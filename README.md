@@ -3,7 +3,7 @@
 ## Index
 
 1. [Pattern](#pattern)
-    - 옵저버패턴(#observer pattern)
+    - [옵저버패턴](#observer pattern)
     - 
 2. [Project Structure](#project-structure)
 3. [UniRx](#unirx)
