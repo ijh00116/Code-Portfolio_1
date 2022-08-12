@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterIdle : MonoBehaviour
+public class CharacterIdle : CharacterAbility
 {
-    // Start is called before the first frame update
-    void Start()
+    Animator animator;
+
+    protected override void Start()
     {
-        
+        base.Start();
+    }
+    protected override void onEnter()
+    {
+        animator.Play("Idle");
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void onExit()
     {
-        
+
+    }
+
+    protected override void onUpdate()
+    {
+        //Idle playing
     }
 }

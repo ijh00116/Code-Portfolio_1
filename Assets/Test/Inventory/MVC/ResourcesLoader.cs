@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourcesLoader : MonoBehaviour
+public class ResourcesLoader : Monosingleton<ResourcesLoader>
 {
     public class LoadedResource
     {
