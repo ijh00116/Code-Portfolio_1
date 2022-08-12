@@ -39,6 +39,7 @@
 <details>
 <summary>코드 내용</summary>
     <div markdown="1">
+
 ```code
 private static Dictionary<string, List<Delegate>> handlers = new Dictionary<string, List<Delegate>>();
 
@@ -89,8 +90,9 @@ private static Dictionary<string, List<Delegate>> handlers = new Dictionary<stri
         }
     }
 ```
-        </div>
-        </details>
+</div>
+</details>
+
 ### MVCPattern
 - ECS지향적으로 바꾸기 전 최대한 Model,Control,View 로 나누어 최대한 객체지향적인 코드를 짜고자 했다.
 - 그러나 현재 Entity와 Component의 종속성을 그대로 두고 System쪽을 최대한 객체지향적인 코드로 바꾸기 있기 떄문에
