@@ -6,6 +6,7 @@
 2. [적용된패턴](#adaptedpatterns)
     - [옵저버패턴](#observerpattern)
     - [MVC패턴](#mvcpattern)
+    - [FSM패턴](#fsmpattern)
 2. [Project Structure](#project-structure)
 
 ## Pattern
@@ -112,7 +113,13 @@ C-->D(IDialog.cs)
 
 ```
 
+### FSMPattern
+- 캐릭터 및 씬 등의 상태관리를 위해 유한상태기계 패턴을 활용
+- 캐릭터는 idle,attack,walk,run 등 상태관리를 위해 코드 관리, 최적화 관리를 
 
+```Code
+
+```
 
 
 
