@@ -98,7 +98,14 @@ private static Dictionary<string, List<Delegate>> handlers = new Dictionary<stri
 | Scenemanager.cs | 씬프리팹,씬과 모델 데이터 관리 |
 | IScene.cs   | 해당 씬의 모델데이터, 씬 내용 포함|
 | UIManager.cs | Dialog(UI)의 내용 관리|
-| IDIalog.cs| 자신이 보여주는 UI의 내용 포함|
+| IDialog.cs| 자신이 보여주는 UI의 내용 포함|
+
+```mermaid
+graph LR
+A(Scenemanager.cs)-->B(IScene.cs)
+B-->C(UIManager.cs)
+C-->D(IDialog.cs)
+```
 
 
 ```Code
