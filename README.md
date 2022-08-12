@@ -117,7 +117,7 @@ C-->D(IDialog.cs)
 <summary>MVC패턴 코드 내용</summary>
     <div markdown="1">
         
--Scenemanager.cs
+- Scenemanager.cs
 ```Code
     public class SceneManager : Monosingleton<SceneManager>
     {
@@ -151,7 +151,7 @@ C-->D(IDialog.cs)
     }
 ```
 
--Iscene.cs
+- Iscene.cs
 ```code
         public class IScene : MonoBehaviour
         {
@@ -178,11 +178,11 @@ C-->D(IDialog.cs)
             }
         }
 ```
--UIManager.cs
+- UIManager.cs
 ```code
         
 ```
--IDialog.cs
+- IDialog.cs
 ```code
         
 ```
