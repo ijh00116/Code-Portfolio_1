@@ -92,6 +92,7 @@ private static Dictionary<string, List<Delegate>> handlers = new Dictionary<stri
 이 패턴은 최대한 간소화 하였다
 - 현재는 Scene과 Dialog(UI)를 관리하도록 하고 프리팹으로 생성하여 작업을 하고 있다
 - IScene과 IDialog로 부모클래스로 만들어 View와 Model만 따로 관리하도록 만들었다.
+
 | 스크립트명            | 역할 및 내용                                                            |
 | ----------------- | ----------------------------------------------------------------------- |
 | Scenemanager.cs | 씬프리팹,씬과 모델 데이터 관리 |
