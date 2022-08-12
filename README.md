@@ -117,9 +117,77 @@ C-->D(IDialog.cs)
 <summary>MVC패턴 코드 내용</summary>
     <div markdown="1">
         
+-Scenemanager.cs
 ```Code
+    public class SceneManager : Monosingleton<SceneManager>
+    {
+        ...
+        public void LoadStartScene()
+        {
+            ...
+            if (scene == null)
+            {
+                var fullpath = string.Format("Scenes/{0}", sceneName);
+                StartCoroutine(ResourcesLoader.Instance.Load<GameObject>(fullpath, o => OnPostLoadProcess(o)));
+            }
+        }
+        void OnPostLoadProcess(Object o)
+        {
+            var scene = Instantiate(o) as GameObject;
 
+            var sceneScript = scene.GetComponent<IScene>();
+            ...
+            SetupScene(sceneScript);
+        }
+        void SetupScene(IScene scene)
+        {
+            var scenescript = scene.GetComponent<IScene>();
+            scenescript.LoadAssets(
+                () =>
+                {
+                    AllSceneLoaded = true;
+                });
+        }
+    }
 ```
+
+-Iscene.cs
+```code
+        public class IScene : MonoBehaviour
+        {
+            ...
+            public void LoadAssets(Action onComplete)
+            {
+                _onLoadComplete = onComplete;
+                StartCoroutine(LoadContents());
+            }
+
+            IEnumerator LoadContents()
+            {
+                ...
+                for (int i = 0; i < UIList.Count; ++i)
+                {
+                    yield return StartCoroutine(UIManager.Instance.Load(UIList[i],
+                        c =>
+                        {
+                            _loadingContentsCount--;
+                            OnContentLoadComplete(c); 
+                        }));
+                }
+                ...
+            }
+        }
+```
+-UIManager.cs
+```code
+        
+```
+-IDialog.cs
+```code
+        
+```
+        
+        
 </div>
 </details>
 
