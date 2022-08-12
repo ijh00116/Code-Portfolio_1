@@ -176,18 +176,70 @@ C-->D(IDialog.cs)
                 }
                 ...
             }
+            void EnterContents()
+            {
+                for (int i = 0; i < EnterUIList.Count; i++)
+                {
+                    Message.Send<ShowDialogMsg>(new ShowDialogMsg(), EnterUIList[i]);
+                }
+            }
         }
 ```
 - UIManager.cs
 ```code
-        
+public class UIManager : Monosingleton<UIManager>
+{
+   ...
+    public IEnumerator Load(string uiName,OnComplete oncomplete)
+    {
+       ...
+        if(ui==null)
+        {
+            var path = string.Format("{0}/{1}", ASSET_PATH, uiName);
+            yield return StartCoroutine(ResourcesLoader.Instance.Load<GameObject>(path,o=> OnPostLoadProcess(o)));
+        }
+       ...
+    }
+}
+
 ```
 - IDialog.cs
 ```code
-        
-```
-        
-        
+public class IDialog : MonoBehaviour
+{
+  ...
+    public void Load()
+    {
+        typeName= GetType().Name;
+        rt= GetComponent<RectTransform>();
+
+        Message.AddMessage<ShowDialogMsg>(Enter,typeName);
+        Message.AddMessage<HideDialogMsg>(Exit, typeName);
+
+        OnLoad();
+        DialogView.SetActive(false);
+    }
+    public void Unload()
+    {
+        Message.RemoveMessage<ShowDialogMsg>(Enter, typeName);
+        Message.RemoveMessage<HideDialogMsg>(Exit, typeName);
+
+        OnExit();
+        OnUnload();
+    }
+...
+    public static void RequestDialogEnter<T>() where T : IDialog
+    {
+        Message.Send<ShowDialogMsg>(new ShowDialogMsg(),typeof(T).Name);
+    }
+
+    public static void RequestDialogExit<T>() where T : IDialog
+    {
+        Message.Send<HideDialogMsg>(new HideDialogMsg(), typeof(T).Name);
+    }
+}
+
+```  
 </div>
 </details>
 
