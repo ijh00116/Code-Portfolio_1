@@ -7,7 +7,6 @@
     - [옵저버패턴](#observerpattern)
     - [MVC패턴](#mvcpattern)
     - [FSM패턴](#fsmpattern)
-2. [Project Structure](#project-structure)
 
 ## Pattern
 
@@ -135,8 +134,3 @@ C-->D(IDialog.cs)
 ```
 </div>
 </details>
-
-       
-
-
-## Project Structure
