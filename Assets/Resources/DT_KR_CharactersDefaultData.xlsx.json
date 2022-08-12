@@ -1,0 +1,514 @@
+{
+  "CharactersDefaultData": [
+    {
+      "idx": "910001",
+      "icon": "ui_character_icon_01",
+      "name": "character_name_001",
+      "prefab": "archer1",
+      "job": "Archer",
+      "skillidx": "72002",
+      "max_lv": "13",
+      "sprite": "archer_0",
+      "attack": "31",
+      "hp": "421",
+      "defense": "5",
+      "attack_speed": "1000",
+      "skill_value": "1.1",
+      "Increase_attack": "0.1",
+      "Increase_hp": "0.1",
+      "Increase_attack_speed": "0.1",
+      "gradeType": "Common"
+    },
+    {
+      "idx": "910002",
+      "icon": "ui_character_icon_02",
+      "name": "character_name_002",
+      "prefab": "tanker1",
+      "job": "Tanker",
+      "skillidx": "72001",
+      "max_lv": "13",
+      "sprite": "tanker_0",
+      "attack": "32",
+      "hp": "422",
+      "defense": "6",
+      "attack_speed": "1000",
+      "skill_value": "1.2",
+      "Increase_attack": "0.1",
+      "Increase_hp": "0.1",
+      "Increase_attack_speed": "0.1",
+      "gradeType": "Common"
+    },
+    {
+      "idx": "910003",
+      "icon": "ui_character_icon_03",
+      "name": "character_name_003",
+      "prefab": "mage1",
+      "job": "Mage",
+      "skillidx": "72003",
+      "max_lv": "13",
+      "sprite": "mage_0",
+      "attack": "33",
+      "hp": "423",
+      "defense": "7",
+      "attack_speed": "1000",
+      "skill_value": "1.1",
+      "Increase_attack": "0.1",
+      "Increase_hp": "0.1",
+      "Increase_attack_speed": "0.1",
+      "gradeType": "Common"
+    },
+    {
+      "idx": "910004",
+      "icon": "ui_character_icon_04",
+      "name": "character_name_004",
+      "prefab": "healer1",
+      "job": "Healer",
+      "skillidx": "0",
+      "max_lv": "13",
+      "sprite": "healer_0",
+      "attack": "34",
+      "hp": "424",
+      "defense": "8",
+      "attack_speed": "1000",
+      "skill_value": "1.15",
+      "Increase_attack": "0.1",
+      "Increase_hp": "0.1",
+      "Increase_attack_speed": "0.1",
+      "gradeType": "Common"
+    },
+    {
+      "idx": "910005",
+      "icon": "ui_character_icon_05",
+      "name": "character_name_005",
+      "prefab": "archer2",
+      "job": "Archer",
+      "skillidx": "72002",
+      "max_lv": "13",
+      "sprite": "archer_1",
+      "attack": "40",
+      "hp": "300",
+      "defense": "5",
+      "attack_speed": "2000",
+      "skill_value": "1.2",
+      "Increase_attack": "0.2",
+      "Increase_hp": "0.2",
+      "Increase_attack_speed": "0.2",
+      "gradeType": "Uncommon"
+    },
+    {
+      "idx": "910006",
+      "icon": "ui_character_icon_06",
+      "name": "character_name_006",
+      "prefab": "tanker2",
+      "job": "Tanker",
+      "skillidx": "72001",
+      "max_lv": "13",
+      "sprite": "tanker_1",
+      "attack": "20",
+      "hp": "600",
+      "defense": "6",
+      "attack_speed": "2000",
+      "skill_value": "1.3",
+      "Increase_attack": "0.2",
+      "Increase_hp": "0.2",
+      "Increase_attack_speed": "0.2",
+      "gradeType": "Uncommon"
+    },
+    {
+      "idx": "910007",
+      "icon": "ui_character_icon_07",
+      "name": "character_name_007",
+      "prefab": "mage2",
+      "job": "Mage",
+      "skillidx": "72003",
+      "max_lv": "13",
+      "sprite": "mage_1",
+      "attack": "40",
+      "hp": "400",
+      "defense": "7",
+      "attack_speed": "2000",
+      "skill_value": "1.3",
+      "Increase_attack": "0.2",
+      "Increase_hp": "0.2",
+      "Increase_attack_speed": "0.2",
+      "gradeType": "Uncommon"
+    },
+    {
+      "idx": "910008",
+      "icon": "ui_character_icon_08",
+      "name": "character_name_008",
+      "prefab": "healer2",
+      "job": "Healer",
+      "skillidx": "0",
+      "max_lv": "13",
+      "sprite": "healer_1",
+      "attack": "25",
+      "hp": "400",
+      "defense": "8",
+      "attack_speed": "2000",
+      "skill_value": "1.4",
+      "Increase_attack": "0.2",
+      "Increase_hp": "0.2",
+      "Increase_attack_speed": "0.2",
+      "gradeType": "Uncommon"
+    },
+    {
+      "idx": "910009",
+      "icon": "ui_character_icon_09",
+      "name": "character_name_009",
+      "prefab": "archer3",
+      "job": "Archer",
+      "skillidx": "72002",
+      "max_lv": "13",
+      "sprite": "archer_2",
+      "attack": "45",
+      "hp": "250",
+      "defense": "5",
+      "attack_speed": "3000",
+      "skill_value": "1.5",
+      "Increase_attack": "0.3",
+      "Increase_hp": "0.3",
+      "Increase_attack_speed": "0.3",
+      "gradeType": "Rare"
+    },
+    {
+      "idx": "910010",
+      "icon": "ui_character_icon_10",
+      "name": "character_name_010",
+      "prefab": "tanker3",
+      "job": "Tanker",
+      "skillidx": "72001",
+      "max_lv": "13",
+      "sprite": "tanker_2",
+      "attack": "25",
+      "hp": "700",
+      "defense": "6",
+      "attack_speed": "3000",
+      "skill_value": "1.6",
+      "Increase_attack": "0.3",
+      "Increase_hp": "0.3",
+      "Increase_attack_speed": "0.3",
+      "gradeType": "Rare"
+    },
+    {
+      "idx": "910011",
+      "icon": "ui_character_icon_11",
+      "name": "character_name_011",
+      "prefab": "mage3",
+      "job": "Mage",
+      "skillidx": "72003",
+      "max_lv": "13",
+      "sprite": "mage_2",
+      "attack": "45",
+      "hp": "300",
+      "defense": "7",
+      "attack_speed": "3000",
+      "skill_value": "1.5",
+      "Increase_attack": "0.3",
+      "Increase_hp": "0.3",
+      "Increase_attack_speed": "0.3",
+      "gradeType": "Rare"
+    },
+    {
+      "idx": "910012",
+      "icon": "ui_character_icon_12",
+      "name": "character_name_012",
+      "prefab": "healer3",
+      "job": "Healer",
+      "skillidx": "0",
+      "max_lv": "13",
+      "sprite": "healer_2",
+      "attack": "30",
+      "hp": "270",
+      "defense": "8",
+      "attack_speed": "3000",
+      "skill_value": "1.7",
+      "Increase_attack": "0.3",
+      "Increase_hp": "0.3",
+      "Increase_attack_speed": "0.3",
+      "gradeType": "Rare"
+    }
+  ],
+  "Color": [
+    {
+      "gradeType": "Common",
+      "color": "#9d9d9d"
+    },
+    {
+      "gradeType": "Uncommon",
+      "color": "#1eff00"
+    },
+    {
+      "gradeType": "Rare",
+      "color": "#0070dd"
+    },
+    {
+      "gradeType": "Tremendous",
+      "color": "#a335ee"
+    },
+    {
+      "gradeType": "Legendary",
+      "color": "#ff8000"
+    },
+    {
+      "gradeType": "God",
+      "color": "#e6cc80"
+    }
+  ],
+  "MaxAmount": [
+    {
+      "lv": "1",
+      "Common": "1",
+      "Uncommon": "0",
+      "Rare": "0",
+      "Tremendous": "0",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "2",
+      "Common": "2",
+      "Uncommon": "0",
+      "Rare": "0",
+      "Tremendous": "0",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "3",
+      "Common": "4",
+      "Uncommon": "1",
+      "Rare": "0",
+      "Tremendous": "0",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "4",
+      "Common": "10",
+      "Uncommon": "2",
+      "Rare": "0",
+      "Tremendous": "0",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "5",
+      "Common": "20",
+      "Uncommon": "4",
+      "Rare": "0",
+      "Tremendous": "0",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "6",
+      "Common": "50",
+      "Uncommon": "10",
+      "Rare": "1",
+      "Tremendous": "0",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "7",
+      "Common": "100",
+      "Uncommon": "20",
+      "Rare": "2",
+      "Tremendous": "0",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "8",
+      "Common": "200",
+      "Uncommon": "50",
+      "Rare": "4",
+      "Tremendous": "0",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "9",
+      "Common": "400",
+      "Uncommon": "100",
+      "Rare": "10",
+      "Tremendous": "1",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "10",
+      "Common": "800",
+      "Uncommon": "200",
+      "Rare": "20",
+      "Tremendous": "2",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "11",
+      "Common": "1000",
+      "Uncommon": "400",
+      "Rare": "40",
+      "Tremendous": "4",
+      "Legendary": "1",
+      "God": "0"
+    },
+    {
+      "lv": "12",
+      "Common": "1500",
+      "Uncommon": "500",
+      "Rare": "50",
+      "Tremendous": "6",
+      "Legendary": "2",
+      "God": "1"
+    },
+    {
+      "lv": "13",
+      "Common": "3000",
+      "Uncommon": "750",
+      "Rare": "100",
+      "Tremendous": "10",
+      "Legendary": "8",
+      "God": "2"
+    },
+    {
+      "lv": "14",
+      "Common": "5000",
+      "Uncommon": "1250",
+      "Rare": "200",
+      "Tremendous": "20",
+      "Legendary": "20",
+      "God": "8"
+    }
+  ],
+  "Gold": [
+    {
+      "lv": "1",
+      "Common": "0",
+      "Uncommon": "0",
+      "Rare": "0",
+      "Tremendous": "0",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "2",
+      "Common": "5",
+      "Uncommon": "0",
+      "Rare": "0",
+      "Tremendous": "0",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "3",
+      "Common": "20",
+      "Uncommon": "0",
+      "Rare": "0",
+      "Tremendous": "0",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "4",
+      "Common": "50",
+      "Uncommon": "50",
+      "Rare": "0",
+      "Tremendous": "0",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "5",
+      "Common": "150",
+      "Uncommon": "150",
+      "Rare": "0",
+      "Tremendous": "0",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "6",
+      "Common": "400",
+      "Uncommon": "400",
+      "Rare": "0",
+      "Tremendous": "0",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "7",
+      "Common": "1000",
+      "Uncommon": "1000",
+      "Rare": "400",
+      "Tremendous": "0",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "8",
+      "Common": "2000",
+      "Uncommon": "2000",
+      "Rare": "2000",
+      "Tremendous": "0",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "9",
+      "Common": "4000",
+      "Uncommon": "4000",
+      "Rare": "4000",
+      "Tremendous": "0",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "10",
+      "Common": "8000",
+      "Uncommon": "8000",
+      "Rare": "8000",
+      "Tremendous": "5000",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "11",
+      "Common": "15000",
+      "Uncommon": "15000",
+      "Rare": "15000",
+      "Tremendous": "15000",
+      "Legendary": "0",
+      "God": "0"
+    },
+    {
+      "lv": "12",
+      "Common": "35000",
+      "Uncommon": "35000",
+      "Rare": "35000",
+      "Tremendous": "35000",
+      "Legendary": "35000",
+      "God": "0"
+    },
+    {
+      "lv": "13",
+      "Common": "75000",
+      "Uncommon": "75000",
+      "Rare": "75000",
+      "Tremendous": "75000",
+      "Legendary": "75000",
+      "God": "75000"
+    },
+    {
+      "lv": "14",
+      "Common": "100000",
+      "Uncommon": "100000",
+      "Rare": "100000",
+      "Tremendous": "100000",
+      "Legendary": "100000",
+      "God": "120000"
+    }
+  ]
+}
