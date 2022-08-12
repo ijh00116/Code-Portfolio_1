@@ -36,7 +36,7 @@
 - 특정 클래스 등의 정보를 전달하기 위해 직접 간섭이 아니라 정보를 전달함으로써 클래스 간의 심한 간섭을 없앤다.
 - 전달받기위해 등록된 함수들을 관리한다.
 <details>
-<summary>옵저버패턴 코드 내용</summary>
+<summary>옵저버패턴 코드 내용 보기</summary>
     <div markdown="1">
 
 ```code
@@ -114,7 +114,7 @@ C-->D(IDialog.cs)
 ```
 
 <details>
-<summary>MVC패턴 코드 내용</summary>
+<summary>MVC패턴 코드 내용 보기</summary>
     <div markdown="1">
         
 - Scenemanager.cs
@@ -248,7 +248,7 @@ public class IDialog : MonoBehaviour
 - 캐릭터는 idle,attack,walk,run 등 상태관리를 위해 코드 관리, 최적화 관리를 
 
 <details>
-<summary>FSM패턴 코드 내용</summary>
+<summary>FSM패턴 코드 내용 보기</summary>
     <div markdown="1">
 
 ```Code
