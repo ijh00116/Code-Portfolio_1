@@ -5,7 +5,7 @@
 1. [Pattern](#pattern)
 2. [적용된패턴](#adaptedpatterns)
     - [옵저버패턴](#observerpattern)
-    - 
+    - [MVC패턴](#mvcpattern)
 2. [Project Structure](#project-structure)
 
 ## Pattern
@@ -85,6 +85,23 @@ private static Dictionary<string, List<Delegate>> handlers = new Dictionary<stri
             _event(e);
         }
     }
+```
+### MVCPattern
+- ECS지향적으로 바꾸기 전 최대한 Model,Control,View 로 나누어 최대한 객체지향적인 코드를 짜고자 했다.
+- 그러나 현재 Entity와 Component의 종속성을 그대로 두고 System쪽을 최대한 객체지향적인 코드로 바꾸기 있기 떄문에
+이 패턴은 최대한 간소화 하였다
+- 현재는 Scene과 Dialog(UI)를 관리하도록 하고 프리팹으로 생성하여 작업을 하고 있다
+- IScene과 IDialog로 부모클래스로 만들어 View와 Model만 따로 관리하도록 만들었다.
+| 스크립트명            | 역할 및 내용                                                            |
+| ----------------- | ----------------------------------------------------------------------- |
+| Scenemanager.cs | 씬프리팹,씬과 모델 데이터 관리 |
+| IScene.cs   | 해당 씬의 모델데이터, 씬 내용 포함|
+| UIManager.cs | Dialog(UI)의 내용 관리|
+| IDIalog.cs| 자신이 보여주는 UI의 내용 포함|
+
+
+```Code
+
 ```
 
 
