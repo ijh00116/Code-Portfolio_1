@@ -6,8 +6,6 @@
     - [옵저버패턴](#observerpattern)
     - 
 2. [Project Structure](#project-structure)
-3. [UniRx](#unirx)
-4. [Packages](#packages)
 
 ## Pattern
 
@@ -34,35 +32,9 @@
 #### Observerpattern
 - 특정 클래스 등의 정보를 전달하기 위해 직접 간섭이 아니라 정보를 전달함으로써 클래스 간의 심한 간섭을 없앤다.
 - 전달받기위해 등록된 함수들을 관리한다.
+
 ```code
 private static Dictionary<string, List<Delegate>> handlers = new Dictionary<string, List<Delegate>>();
-
-    public static void AddListener<T>(string messageName, Action<T> callback)where T:Message
-    {
-        RegisterListener(typeof(T).ToString() + messageName, callback);
-    }
-    public static void AddListener<T>(Action<T> callback) where T : Message
-    {
-        RegisterListener(typeof(T).ToString(), callback);
-    }
-
-    public static void RemoveListener<T>(string messageName, Action<T> callback)where T:Message
-    {
-        UnRegisterListener(typeof(T).ToString() + messageName, callback);
-    }
-    public static void RemoveListener<T>(Action<T> callback) where T : Message
-    {
-        UnRegisterListener(typeof(T).ToString(), callback);
-    }
-
-    public static void Send<T>(string messageName, T e)where T:Message
-    {
-        SendMessage<T>(typeof(T).ToString() + messageName, e);
-    }
-    public static void Send<T>(T e) where T : Message
-    {
-        SendMessage<T>(typeof(T).ToString(), e);
-    }
 
     private static void RegisterListener(string messageName, Delegate callback)
     {
@@ -72,17 +44,14 @@ private static Dictionary<string, List<Delegate>> handlers = new Dictionary<stri
         {
             handlers.Add(messageName, new List<Delegate>());
         }
-
         List<Delegate> messagelst = handlers[messageName];
         Delegate ms = messagelst.Find(o => o.Method == callback.Method && o.Target == callback.Target);
         if(ms!=null)
         {
             throw new ArgumentException("Callback method is already exist!!", messageName);
         }
-
         messagelst.Add(callback);
     }
-
     private static void UnRegisterListener(string messageName, Delegate callback)
     {
         if (callback == null)
@@ -113,7 +82,6 @@ private static Dictionary<string, List<Delegate>> handlers = new Dictionary<stri
             _event(e);
         }
     }
-
 ```
 
 
