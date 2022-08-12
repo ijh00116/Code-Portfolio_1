@@ -116,6 +116,7 @@ C-->D(IDialog.cs)
 <details>
 <summary>MVC패턴 코드 내용</summary>
     <div markdown="1">
+        
 ```Code
 
 ```
@@ -129,6 +130,7 @@ C-->D(IDialog.cs)
 <details>
 <summary>FSM패턴 코드 내용</summary>
     <div markdown="1">
+
 ```Code
 
 ```
