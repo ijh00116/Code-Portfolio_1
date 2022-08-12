@@ -3,7 +3,7 @@
 ## Index
 
 1. [Pattern](#pattern)
-2. [AdaptedPatterns](#AdaptedPatterns)
+2. [AdaptedPatterns](#adaptedpatterns)
     - [옵저버패턴](#observerpattern)
     - 
 2. [Project Structure](#project-structure)
