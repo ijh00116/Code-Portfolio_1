@@ -7,6 +7,7 @@
     - [옵저버패턴](#observerpattern)
     - [MVC패턴](#mvcpattern)
     - [FSM패턴](#fsmpattern)
+3. [플레이팹(인벤토리 예시)](#플레이팹관리)
 
 ## Pattern
 
@@ -258,3 +259,7 @@ public class IDialog : MonoBehaviour
 ```
 </div>
 </details>
+
+## 플레이팹관리
+- azure에서 제공하는 playfab을 사용하여 DB등 유저 데이터를 관리합니다
+- 서버관련 내용을 사용합니다(랭킹,우편,인벤토리 관리 등)
