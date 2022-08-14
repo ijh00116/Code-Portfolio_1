@@ -43,8 +43,8 @@ graph LR
 A(구독(메세지add))-->B(Message.cs)
 C(구독(메세지add))-->B(UIManager.cs)
 D(메세지호출(send))-->B(IDialog.cs)
-B-->A
-B-->C
+B(Message.cs)-->A(구독(메세지add))
+B(Message.cs)-->C(구독(메세지add))
 ```
 
 <details>
