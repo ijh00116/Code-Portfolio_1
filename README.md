@@ -8,7 +8,7 @@
     - [옵저버패턴](#observerpattern)
     - [MVC패턴](#mvcpattern)
     - [FSM패턴](#fsmpattern)
-3. [플레이팹(인벤토리 예시)](#플레이팹관리)
+3. [플레이팹(인벤토리 예시)](#플레이팹관리(인벤토리))
 
 ## Pattern
 
