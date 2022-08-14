@@ -42,9 +42,9 @@
 graph LR
 A(AddMessage)-->B(Message.cs)
 C(AddMessage)-->B
-D(SendMessage)--->B
-B--->C
-B--->A
+D(SendMessage)-.->B
+B-.->C
+B-.->A
 ```
 <details>
 <summary>
