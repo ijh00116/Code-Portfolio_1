@@ -3,7 +3,7 @@
 ## Index
 
 1. [Pattern](#pattern)
-2. [적용된패턴](#adaptedpatterns)
+2. [적용된패턴](#적용된패턴들)
     - [옵저버패턴](#observerpattern)
     - [MVC패턴](#mvcpattern)
     - [FSM패턴](#fsmpattern)
@@ -31,7 +31,7 @@
 - 디자인 패턴은 컴포넌트처럼 되도록 어디에 쓰든 활용 가능하게.
 - 복잡할순 있어도 적용이 좋게(느슨한 결합)
 
-## AdaptedPatterns
+## 적용된패턴들
 
 ### Observerpattern
 - 특정 클래스 등의 정보를 전달하기 위해 직접 간섭이 아니라 정보를 전달함으로써 클래스 간의 심한 간섭을 없앤다.
