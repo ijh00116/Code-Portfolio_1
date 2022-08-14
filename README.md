@@ -45,7 +45,12 @@
     B(AddMessage)->>Message.cs: 메세지 등록
     C(메세지send)->>Message.cs:메세지 이벤트 호출
 ```
-
+```mermaid
+graph LR
+a(a)-->b(b)
+c(c)-->b
+d(d)-->b
+```
 <details>
 <summary>
     <span style="color:#008000">옵저버패턴 코드 내용 보기</span>
