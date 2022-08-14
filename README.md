@@ -296,7 +296,7 @@ public class StateMachine<T> : IStateCallbackListener where T : struct
 }
 ```
 
--[CharacterAbility.cs](https://github.com/ijh00116/BT_Project/blob/main/Assets/InGame/Scripts/FSM/CharacterAbility.cs)
+- [CharacterAbility.cs](https://github.com/ijh00116/BT_Project/blob/main/Assets/InGame/Scripts/FSM/CharacterAbility.cs)
 
 ```ca
 public class CharacterAbility : MonoBehaviour,IStateCallback
@@ -326,4 +326,36 @@ public class CharacterAbility : MonoBehaviour,IStateCallback
 - azure에서 제공하는 playfab을 사용하여 DB등 유저 데이터를 관리합니다
 - 서버관련 내용을 사용합니다(랭킹,우편,인벤토리 관리 등)
 - 해당 md에서는 인벤토리만 간략하게 설명되어 있습니다.
-- 자세한 Playfab로직은 [Playfab]()에서 확인 바랍니다.
+- 자세한 Playfab로직은 [Playfab](https://github.com/ijh00116/BT_Project/blob/main/Assets/InGame/Scripts/PlayfabManager.cs)에서 확인 바랍니다.
+
+<details>
+<summary> <span style="color:#008000">플레이팹 코드 내용 보기 </span></summary>
+    <div markdown="1">
+
+
+- [CharacterAbility.cs](https://github.com/ijh00116/BT_Project/blob/main/Assets/InGame/Scripts/FSM/CharacterAbility.cs)
+
+```ca
+public class CharacterAbility : MonoBehaviour,IStateCallback
+{
+    [SerializeField] protected eActorState Mystate;
+    protected Character _character = null;
+    protected StateMachine<eActorState> _State;
+    public Action OnEnter => onEnter;
+    public Action OnExit => onExit;
+    public Action OnUpdate => onUpdate;
+    // Start is called before the first frame update
+    protected virtual void Start()
+    {
+        _character = GetComponent<Character>();
+        _State = _character._state;
+
+        _State.AddState(Mystate, this);
+    }
+...
+}
+```
+
+
+</div>
+</details>
