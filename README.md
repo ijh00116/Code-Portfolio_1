@@ -40,11 +40,9 @@
 
 ```mermaid
 graph LR
-A(구독(메세지add))-->B(Message.cs)
-C(구독(메세지add))-->B(UIManager.cs)
-D(메세지호출(send))-->B(IDialog.cs)
-B(Message.cs)-->A(구독(메세지add))
-B(Message.cs)-->C(구독(메세지add))
+Alice->Bob: Hello Bob, how are you?
+Note right of Bob: Bob thinks
+Bob-->Alice: I am good thanks!
 ```
 
 <details>
