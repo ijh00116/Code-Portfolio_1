@@ -8,7 +8,7 @@
     - [옵저버패턴](#observerpattern)
     - [MVC패턴](#mvcpattern)
     - [FSM패턴](#fsmpattern)
-3. [플레이팹(인벤토리 예시)](#플레이팹관리(인벤토리))
+3. [플레이팹(인벤토리 예시)](#플레이팹관리)
 
 ## Pattern
 
@@ -322,7 +322,7 @@ public class CharacterAbility : MonoBehaviour,IStateCallback
 </div>
 </details>
 
-## 플레이팹관리(인벤토리)
+## 플레이팹관리
 - azure에서 제공하는 playfab을 사용하여 DB등 유저 데이터를 관리합니다
 - 서버관련 내용을 사용합니다(랭킹,우편,인벤토리 관리 등)
 - 해당 md에서는 인벤토리만 간략하게 설명되어 있습니다.([인벤토리 추가 코드내용](https://github.com/ijh00116/IdleGameSample/tree/main/Assets/MainProject/Scripts/SystemContents/Item))
@@ -357,10 +357,12 @@ public class InventoryObject
   ...
 }
 ```
+<br>
 <figure>
 <img src="https://github.com/ijh00116/BT_Project/blob/main/MdResources/inventory_0.PNG" title="인벤토리초기설정" width="500"><br>
 <figcaption>인벤토리초기설정</figcaption><br>
 </figure>
+<br>
 
 - [PlayfabManager.cs](https://github.com/ijh00116/BT_Project/blob/main/Assets/InGame/Scripts/PlayfabManager.cs)
 
@@ -395,14 +397,14 @@ public class InventoryObject
 }
 
 ```
-
+<br><br>
 <figure>
 <img src="https://github.com/ijh00116/BT_Project/blob/main/MdResources/inventory_1.PNG" title="인벤토리 아이템 업데이트" width="500"><br>
 <figcaption>인벤토리 아이템 업데이트</figcaption><br>
 </figure>
-        
+    <br>    
 <figure>
-<img src="https://github.com/ijh00116/BT_Project/blob/main/MdResources/inventory_2.PNG" title="인벤토리 업데이트 플레이팹 화면" width="500"><br>
+<img src="https://github.com/ijh00116/BT_Project/blob/main/MdResources/inventory_2.PNG" title="인벤토리 업데이트 플레이팹 화면" width="900"><br>
 <figcaption>인벤토리 업데이트 플레이팹 화면</figcaption><br>
 </figure>
 
