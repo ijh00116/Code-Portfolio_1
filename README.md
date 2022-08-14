@@ -53,7 +53,7 @@ B-.->A
 </summary>
     <div markdown="1">
 
-- Message.cs
+- [Message.cs](https://github.com/ijh00116/BT_Project/blob/main/Assets/InGame/Scripts/ObserverPattern/Message.cs)
 ```code
 private static Dictionary<string, List<Delegate>> handlers = new Dictionary<string, List<Delegate>>();
 
@@ -132,7 +132,7 @@ C-->D(IDialog.cs)
 <summary> <span style="color:#008000">MVC패턴 코드 내용 보기</span></summary>
     <div markdown="1">
         
-- Scenemanager.cs
+- [Scenemanager.cs](https://github.com/ijh00116/BT_Project/blob/main/Assets/InGame/Scripts/MVC/SceneManager.cs)
 ```Code
     public class SceneManager : Monosingleton<SceneManager>
     {
@@ -166,7 +166,7 @@ C-->D(IDialog.cs)
     }
 ```
 
-- Iscene.cs
+- [Iscene.cs](https://github.com/ijh00116/BT_Project/blob/main/Assets/InGame/Scripts/MVC/IDialog.cs)
 ```code
         public class IScene : MonoBehaviour
         {
@@ -200,7 +200,7 @@ C-->D(IDialog.cs)
             }
         }
 ```
-- UIManager.cs
+- [UIManager.cs](https://github.com/ijh00116/BT_Project/blob/main/Assets/InGame/Scripts/MVC/UIManager.cs)
 ```code
 public class UIManager : Monosingleton<UIManager>
 {
@@ -218,7 +218,7 @@ public class UIManager : Monosingleton<UIManager>
 }
 
 ```
-- IDialog.cs
+- [IDialog.cs](https://github.com/ijh00116/BT_Project/blob/main/Assets/InGame/Scripts/MVC/IDialog.cs)
 ```code
 public class IDialog : MonoBehaviour
 {
@@ -269,8 +269,7 @@ public class IDialog : MonoBehaviour
 <summary> <span style="color:#008000">FSM패턴 코드 내용 보기 </span></summary>
     <div markdown="1">
 
-- StateMachine
-
+- [StateMachine](https://github.com/ijh00116/BT_Project/blob/main/Assets/InGame/Scripts/FSM/CharacterState.cs)
 ```Code
 public class StateMachine<T> : IStateCallbackListener where T : struct
 {
@@ -297,7 +296,7 @@ public class StateMachine<T> : IStateCallbackListener where T : struct
 }
 ```
 
--CharacterAbility.cs
+-[CharacterAbility.cs](https://github.com/ijh00116/BT_Project/blob/main/Assets/InGame/Scripts/FSM/CharacterAbility.cs)
 
 ```ca
 public class CharacterAbility : MonoBehaviour,IStateCallback
