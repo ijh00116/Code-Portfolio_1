@@ -323,7 +323,7 @@ public class CharacterAbility : MonoBehaviour,IStateCallback
 </div>
 </details>
 
-## 플레이팹관리
+## 플레이팹관리(인벤토리)
 - azure에서 제공하는 playfab을 사용하여 DB등 유저 데이터를 관리합니다
 - 서버관련 내용을 사용합니다(랭킹,우편,인벤토리 관리 등)
 - 해당 md에서는 인벤토리만 간략하게 설명되어 있습니다.
