@@ -14,6 +14,7 @@
 
 ### 소개 
 - 주로 사용하거나 프로젝트 사용시 필수로 사용되는 패턴
+- 많은 패턴이 사용되나 인게임에서 주요하게 많이 사용되는 패턴을 소개합니다.
 
 ### 목적
 - 유니티 이용한 게임 개발시 생산성을 높이고 유지 보수를 용이하게 하기 위함.
@@ -267,8 +268,52 @@ public class IDialog : MonoBehaviour
 <details>
 <summary> <span style="color:#008000">FSM패턴 코드 내용 보기 </span></summary>
     <div markdown="1">
-
+- StateMachine
 ```Code
+public class StateMachine<T> : IStateCallbackListener where T : struct
+{
+    public bool Triggerevent;
+    public GameObject target;
+    public T PreviousState;
+    public T CurrentState;
+    public IStateCallback PreviousStatecallback;
+    public IStateCallback currentStatecallback;
+    public Dictionary<T, IStateCallback> stateLookup;
+    CharacterStateMachineRunner StateMachineRunner;
+    public StateMachine(GameObject obj,bool _istrigger)
+    {
+        target = obj;
+        Triggerevent = _istrigger;
+
+        if (StateMachineRunner == null)
+            StateMachineRunner = obj.AddComponent<CharacterStateMachineRunner>();
+
+        stateLookup = new Dictionary<T, IStateCallback>();
+        StateMachineRunner.Initialize(this);
+    }
+   ...
+}
+```
+-CharacterAbility.cs
+```ca
+public class CharacterAbility : MonoBehaviour,IStateCallback
+{
+    [SerializeField] protected eActorState Mystate;
+    protected Character _character = null;
+    protected StateMachine<eActorState> _State;
+    public Action OnEnter => onEnter;
+    public Action OnExit => onExit;
+    public Action OnUpdate => onUpdate;
+    // Start is called before the first frame update
+    protected virtual void Start()
+    {
+        _character = GetComponent<Character>();
+        _State = _character._state;
+
+        _State.AddState(Mystate, this);
+    }
+...
+}
 
 ```
 </div>
