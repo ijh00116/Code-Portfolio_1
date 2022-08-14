@@ -259,7 +259,10 @@ public class IDialog : MonoBehaviour
 
 ### FSMPattern
 - 캐릭터 및 씬 등의 상태관리를 위해 유한상태기계 패턴을 활용
-- 캐릭터는 idle,attack,walk,run 등 상태관리를 위해 코드 관리, 최적화 관리를 
+- 캐릭터는 idle,attack,walk,run 등 상태를 각각 정의하여 관리합니다.  
+- 이 프로젝트는 최소한의 FSM 규격을 정의 하였습니다.
+- 더 자세한 FSM 내용은 [CharacterFSM](https://github.com/ijh00116/IdleGameSample/tree/main/Assets/MainProject/Scripts/InGame/CharacterFsm)이곳에서 확인하실수 있습니다.
+        
 
 <details>
 <summary> <span style="color:#008000">FSM패턴 코드 내용 보기 </span></summary>
