@@ -47,9 +47,11 @@
 ```
 ```mermaid
 graph LR
-a(a)-->b(b)
-c(c)-->b
-d(d)-->b
+A(AddMessage)-->B(Message.cs)
+C(AddMessage)-->B
+D(SendMessage)-->B
+B-->C
+B-->A
 ```
 <details>
 <summary>
