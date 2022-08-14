@@ -40,9 +40,9 @@
 
 
 ```mermaid
-Alice->Bob: Hello Bob, how are you?
-Note right of Bob: Bob thinks
-Bob-->Alice: I am good thanks!
+  sequenceDiagram
+    A(AddMessage)->>Message.cs: 메세지 등록
+    B(AddMessage)->>Message.cs: 메세지 등록
 ```
 
 <details>
