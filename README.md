@@ -268,7 +268,9 @@ public class IDialog : MonoBehaviour
 <details>
 <summary> <span style="color:#008000">FSM패턴 코드 내용 보기 </span></summary>
     <div markdown="1">
+
 - StateMachine
+
 ```Code
 public class StateMachine<T> : IStateCallbackListener where T : struct
 {
@@ -294,7 +296,9 @@ public class StateMachine<T> : IStateCallbackListener where T : struct
    ...
 }
 ```
+
 -CharacterAbility.cs
+
 ```ca
 public class CharacterAbility : MonoBehaviour,IStateCallback
 {
@@ -314,8 +318,8 @@ public class CharacterAbility : MonoBehaviour,IStateCallback
     }
 ...
 }
-
 ```
+
 </div>
 </details>
 
