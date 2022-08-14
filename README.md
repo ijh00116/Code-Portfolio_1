@@ -1,5 +1,6 @@
 # Project Framework and Portpolio
-
+- 해당 프로젝트는 unityProject입니다.
+- 프로젝트를 열어 각 프레임워크에 해당하는 씬을 열어 실행해볼 수 있습니다.
 ## Index
 
 1. [Pattern](#pattern)
@@ -36,12 +37,23 @@
 ### Observerpattern
 - 특정 클래스 등의 정보를 전달하기 위해 직접 간섭이 아니라 정보를 전달함으로써 클래스 간의 심한 간섭을 없앤다.
 - 전달받기위해 등록된 함수들을 관리한다.
+
+```mermaid
+graph LR
+A(구독(메세지add))-->B(Message.cs)
+C(구독(메세지add))-->B(UIManager.cs)
+D(메세지호출(send))-->B(IDialog.cs)
+B-->A
+B-->C
+```
+
 <details>
 <summary>
     <span style="color:#008000">옵저버패턴 코드 내용 보기</span>
 </summary>
     <div markdown="1">
 
+- Message.cs
 ```code
 private static Dictionary<string, List<Delegate>> handlers = new Dictionary<string, List<Delegate>>();
 
