@@ -43,6 +43,7 @@
   sequenceDiagram
     A(AddMessage)->>Message.cs: 메세지 등록
     B(AddMessage)->>Message.cs: 메세지 등록
+    C(메세지send)->>Message.cs:메세지 이벤트 호출
 ```
 
 <details>
