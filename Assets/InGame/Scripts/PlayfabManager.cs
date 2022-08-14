@@ -265,7 +265,7 @@ namespace BlackTree
         public void SavePlayerData<T>(int keyidx, T e, Action<UpdateUserDataResult> onComplete) where T : class
         {
             Dictionary<string, string> characterdatadic = new Dictionary<string, string>();
-
+             
             var _json = Newtonsoft.Json.JsonConvert.SerializeObject(e);
             characterdatadic.Add(keyidx.ToString(), _json);
 
