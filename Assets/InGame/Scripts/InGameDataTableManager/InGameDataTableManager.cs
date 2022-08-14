@@ -48,10 +48,15 @@ public class CharacterInfo
 
 public class InGameDataTableManager : Monosingleton<InGameDataTableManager>
 {
-    CharacterInfo characterinfo;
-    public void Init()
+    public CharacterInfo characterinfo;
+
+    public bool tableLoaded=false;
+    public override void Init()
     {
-        characterinfo = ReadData<CharacterInfo>("DT_KR_CharactersDefaultData.xlsx");
+        base.Init(); 
+        characterinfo = ReadData<CharacterInfo>("Table/CharactersDefaultData.xlsx");
+
+        tableLoaded = true;
     }
 
     T ReadData<T>(string fileName)

@@ -2,18 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum UISibling
+{
+    //main
+    MainDialog=1,
+    //topdialog(페이드에 가려지는 UI)
+    InGameDialog= 500,
+}
 public class UIManager : Monosingleton<UIManager>
 {
     public GameObject MainDialogCanvas;
+    public GameObject InGameDialogCanvas;
     public delegate void OnComplete(GameObject ui);
 
-    Dictionary<string, GameObject> Uis;
-    Dictionary<string, System.Delegate> OnCompleteEvents;
+    Dictionary<string, GameObject> Uis=new Dictionary<string, GameObject>();
+    Dictionary<string, System.Delegate> OnCompleteEvents=new Dictionary<string, System.Delegate>();
 
     string ASSET_PATH = "Dialogs";
     public override void Init()
     {
         base.Init();
+        
     }
 
     public IEnumerator Load(string uiName,OnComplete oncomplete)
@@ -75,6 +84,8 @@ public class UIManager : Monosingleton<UIManager>
 
     void AttachtoCanvas(GameObject ui)
     {
+        int UienumIdx = EnumExtention.ParseToInt<UISibling>(ui.name);
+        var ParentObj = GetUIParentBySiblingIndex(UienumIdx);
         ui.transform.SetParent(MainDialogCanvas.transform, false);
         ui.transform.SetAsLastSibling();
     }
@@ -98,7 +109,22 @@ public class UIManager : Monosingleton<UIManager>
         if (ui != null)
         {
             Destroy(ui);
+            ui.GetComponent<IDialog>().Unload();
             Uis.Remove(uiName);
         }
+    }
+
+    GameObject GetUIParentBySiblingIndex(int index)
+    {
+        GameObject obj = null;
+        if (index < 500)
+        {
+            obj = MainDialogCanvas;
+        }
+        else if (index < 1000)
+        {
+            obj = InGameDialogCanvas;
+        }
+        return obj;
     }
 }

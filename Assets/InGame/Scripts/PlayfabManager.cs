@@ -9,15 +9,32 @@ using UniRx;
 
 namespace BlackTree
 {
+    #region playfab inventory에 쓰이는 것들
+    public class ItemInfo
+    {
+        public string instanceId;
+        public int level;
+        public int amount;
+        public bool equip;
+    }
+
+    public class ItemSaveData
+    {
+        public string id;
+        public string instanceId;
+        public int amount;
+        public bool equip;
+        public int level;
+    }
+    #endregion
     public class PlayerData
     {
         public int item_1;
         public int item_2;
         public int item_3;
     }
-    public class PlayfabManager : MonoBehaviour
+    public class PlayfabManager : Monosingleton<PlayfabManager>
     {
-        public static PlayfabManager instance;
         public PlayerData playerData;
 
         public Text EnergyLeftTIme;
@@ -39,26 +56,24 @@ namespace BlackTree
         string myplayfabId;
 
         public bool isLogin=false;
-        private void Awake()
+
+        public override void Init()
         {
-            instance = this;
-        }
-        // Start is called before the first frame update
-        void Start()
-        {
-            loginBtn.onClick.AsObservable().Subscribe(o => { Login(); });
-            RegisterBtn.onClick.AsObservable().Subscribe(o => { RegisterId(); });
-            ResetPasswordBtn.onClick.AsObservable().Subscribe(o => { ResetPassword(); });
+            base.Init();
 
-            GameOverBtn.onClick.AsObservable().Subscribe(o => { GameOver(); });
-            GetleaderboardBtn.onClick.AsObservable().Subscribe(o => { GetLeaderboard(); });
+            //loginBtn.onClick.AsObservable().Subscribe(o => { Login(); });
+            //RegisterBtn.onClick.AsObservable().Subscribe(o => { RegisterId(); });
+            //ResetPasswordBtn.onClick.AsObservable().Subscribe(o => { ResetPassword(); });
 
-            SaveUserDatabtn.onClick.AsObservable().Subscribe(o => { SaveAppearance(); });
-            GetUserDatabtn.onClick.AsObservable().Subscribe(o => { GetAppearance(); });
+            //GameOverBtn.onClick.AsObservable().Subscribe(o => { GameOver(); });
+            //GetleaderboardBtn.onClick.AsObservable().Subscribe(o => { GetLeaderboard(); });
 
-            ExecuteBtn.onClick.AsObservable().Subscribe(o => { ExecuteButton(); });
-            //Login();
-            playerData = new PlayerData();
+            //SaveUserDatabtn.onClick.AsObservable().Subscribe(o => { SaveAppearance(); });
+            //GetUserDatabtn.onClick.AsObservable().Subscribe(o => { GetAppearance(); });
+
+            //ExecuteBtn.onClick.AsObservable().Subscribe(o => { ExecuteButton(); });
+
+            //playerData = new PlayerData();
             Login();
         }
 
@@ -88,11 +103,12 @@ namespace BlackTree
             PlayFabClientAPI.ExecuteCloudScript(request, OnExecuteSuccess, OnError);
         }
         #endregion
+
         #region 로그인
         void Login()
         {
             var request = new LoginWithCustomIDRequest { 
-            CustomId="blacktree12",
+            CustomId="blacktree1234",
             CreateAccount=true,
             InfoRequestParameters=new GetPlayerCombinedInfoRequestParams
             {
@@ -107,7 +123,7 @@ namespace BlackTree
             myplayfabId = result.PlayFabId;
             Debug.Log($"Successful login/account create!::{myplayfabId}");
 
-            GetVirtualCurrencies();
+            //GetVirtualCurrencies();
             GetTitleData();
             //string name = null;
             //if(result.InfoResultPayload.PlayerProfile.DisplayName!=null)
@@ -162,7 +178,7 @@ namespace BlackTree
 
         }
       
-        private void OnError(PlayFabError obj)
+        public void OnError(PlayFabError obj)
         {
             Debug.Log(obj.ErrorMessage);
             Debug.Log(obj.GenerateErrorReport());
@@ -236,6 +252,30 @@ namespace BlackTree
         #endregion
 
         #region 플레이어데이터
+
+        ///////////////////////세이브////////////////////////
+        public void SavePlayerData(Dictionary<string,string > playerdata,Action<UpdateUserDataResult> onComplete)
+        {
+            var request = new UpdateUserDataRequest
+            {
+                Data = playerdata
+            };
+            PlayFabClientAPI.UpdateUserData(request, onComplete, OnError);
+        }
+        public void SavePlayerData<T>(int keyidx, T e, Action<UpdateUserDataResult> onComplete) where T : class
+        {
+            Dictionary<string, string> characterdatadic = new Dictionary<string, string>();
+
+            var _json = Newtonsoft.Json.JsonConvert.SerializeObject(e);
+            characterdatadic.Add(keyidx.ToString(), _json);
+
+            var request = new UpdateUserDataRequest
+            {
+                Data = characterdatadic
+            };
+            PlayFabClientAPI.UpdateUserData(request, onComplete, OnError);
+        }
+
         public void SaveAppearance()
         {
             List<PlayerData> characters = new List<PlayerData>();
@@ -275,7 +315,20 @@ namespace BlackTree
 
             Debug.Log("success user data sended");
         }
+        ///////////////////////세이브////////////////////////
+        //////
+        ///
 
+        ///////////////////////로드////////////////////////
+        public void GetPlayerData(string keystring,Action<GetUserDataResult> onLoadComplete)
+        {
+            PlayFabClientAPI.GetUserData(new GetUserDataRequest()
+            {
+                PlayFabId = myplayfabId,
+                Keys = new List<string> { keystring }
+            }, onLoadComplete, OnError);
+        }
+        
         public void GetAppearance()
         {
             PlayFabClientAPI.GetUserData(new GetUserDataRequest() {PlayFabId=myplayfabId,
@@ -295,8 +348,9 @@ namespace BlackTree
                     Debug.Log($"<color=cyan>{_data.item_1}</color><color=red>{_data.item_2}</color><color=green>{_data.item_3}</color>");
                 }
             }
-            
         }
+
+        ///////////////////////로드////////////////////////
         #endregion
 
         #region 타이틀데이터
@@ -357,6 +411,7 @@ namespace BlackTree
 
         #endregion
 
+        #region 아이템 관련
         public void GetItemInfo()
         {
             var request = new GetCatalogItemsRequest() {
@@ -375,7 +430,6 @@ namespace BlackTree
                  Debug.Log(item.CustomData);
             }
         }
-
 
         public Dictionary<string, ItemSaveData> inventoryid = new Dictionary<string, ItemSaveData>();
 
@@ -429,8 +483,6 @@ namespace BlackTree
 
             callback?.Invoke(items);
         }
-
-      
 
         //아이템 소비
         //unlock과 counsume시 소비 되는지 볼것, 잠김해제 잠긴거 볼것,번들 얻을시 아이템에 어케 표시되나 볼것
@@ -512,15 +564,17 @@ namespace BlackTree
             }
         }
 
+        #endregion
+
         private void Update()
         {
-            secondsLeftToRefreshEnergy -= Time.deltaTime;
-            TimeSpan time = TimeSpan.FromSeconds(secondsLeftToRefreshEnergy);
-            EnergyLeftTIme.text = time.ToString("mm':'ss");
-            if (secondsLeftToRefreshEnergy < 0)
-            {
-                GetVirtualCurrencies();
-            }
+            //secondsLeftToRefreshEnergy -= Time.deltaTime;
+            //TimeSpan time = TimeSpan.FromSeconds(secondsLeftToRefreshEnergy);
+            //EnergyLeftTIme.text = time.ToString("mm':'ss");
+            //if (secondsLeftToRefreshEnergy < 0)
+            //{
+            //    GetVirtualCurrencies();
+            //}
         }
 
     }

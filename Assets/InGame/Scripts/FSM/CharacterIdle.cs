@@ -7,6 +7,7 @@ public class CharacterIdle : CharacterAbility
     protected override void Start()
     {
         base.Start();
+        _character._state.ChangeState(Mystate);
     }
     protected override void onEnter()
     {
@@ -15,11 +16,12 @@ public class CharacterIdle : CharacterAbility
 
     protected override void onExit()
     {
-
+        Debug.Log("Idle상태 종료");
     }
 
     protected override void onUpdate()
     {
         //Idle playing
+        Debug.Log("Idle상태 진행중");
     }
 }

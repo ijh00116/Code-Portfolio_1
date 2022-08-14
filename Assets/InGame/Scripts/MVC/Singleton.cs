@@ -28,11 +28,6 @@ public class Monosingleton<T>:MonoBehaviour where T:Monosingleton<T>
 
     private void Awake()
     {
-        Init();    
-    }
-
-    public virtual void Init()
-    {
         DontDestroyOnLoad(gameObject);
         if (instance == null)
         {
@@ -43,6 +38,11 @@ public class Monosingleton<T>:MonoBehaviour where T:Monosingleton<T>
         {
             Destroy(gameObject);
         }
+    }
+
+    public virtual void Init()
+    {
+        
     }
 
     public virtual void Release()

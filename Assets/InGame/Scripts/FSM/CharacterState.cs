@@ -51,6 +51,9 @@ public class StateMachine<T> : IStateCallbackListener where T : struct
     }
     public void ChangeState(T state)
     {
+        //if (CurrentState.Equals(state))
+        //    return;
+
         PreviousState = CurrentState;
         if (stateLookup.ContainsKey(PreviousState))
         {

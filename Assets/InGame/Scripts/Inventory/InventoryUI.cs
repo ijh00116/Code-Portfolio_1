@@ -7,80 +7,83 @@ namespace BlackTree
 {
     public class InventoryUI : MonoBehaviour
     {
-        InventoryObject invenobj;
-        GameObject itemSlot;
-        [SerializeField] InputField iteminput;
-        
+        InventoryObject inventory;
+        [SerializeField]ItemUIDisplay itemSlot;
+        [SerializeField] Transform slotparent;
+
+        public Dictionary<ItemUIDisplay, ItemSlot> slotsOnInterface = new Dictionary<ItemUIDisplay, ItemSlot>();
+
         // Start is called before the first frame update
         void Start()
         {
-            invenobj = new InventoryObject();
-            invenobj.Init();
-
-            StartCoroutine(GetDB());
+            StartCoroutine(GetDBItemInfo());
         }
 
-        IEnumerator GetDB()
+        IEnumerator GetDBItemInfo()
         {
-            yield return new WaitUntil(()=>PlayfabManager.instance.isLogin == true);
+            yield return new WaitUntil(() => InGameDataTableManager.Instance.tableLoaded== true);
 
+            inventory = new InventoryObject();
+            inventory.Init();
 
-            PlayfabManager.instance.GetInventory(InitItemCallback);
+            yield return new WaitUntil(()=>PlayfabManager.Instance.isLogin == true);
+
+            Debug.Log($"아이템 로드");
+
+            foreach (var data in inventory.GetSlots)
+            {
+                var keyidx = data.item.idx.ToString();
+                PlayfabManager.Instance.GetPlayerData(keyidx, o=> { OnDataRecieved(o, data); });
+            }
+
+            //cloudscript 함수 만들어서 인벤토리의 전체 정보를 로드해야 한다.
+            //또한 아이템의 세이브는 아이템 세이브시 유저의 인벤토리 정보를 업데이트 하도록 cloudscript를 작업해야 한다.
+            //따라서 인벤토리 전체정보를 받아서 콜백으로 인벤토리 db를 모두 받았을때 다음으로 넘어간다.
+            //그러나 지금은 잠시 임시로 2초 뒤에 넘어가서 조정하도록 한다.
+            yield return new WaitForSeconds(2.0f);
+
+            CreateSlots();
         }
-        // Update is called once per frame
-        void Update()
+
+        public void CreateSlots()
         {
-            if(Input.GetKeyDown(KeyCode.G))
+            slotsOnInterface = new Dictionary<ItemUIDisplay, ItemSlot>();
+            for (int i = 0; i < inventory.GetSlots.Count; i++)
             {
-                PlayfabManager.instance.PrchaseItemInfo(iteminput.text, GetItemCallback);
+                var obj = Instantiate(itemSlot);
+                obj.transform.SetParent(slotparent.transform, false);
+                obj.transform.localPosition = Vector3.zero;
+                slotsOnInterface.Add(obj, inventory.GetSlots[i]);
             }
 
-            if(Input.GetKeyDown(KeyCode.U))
+            foreach (var data in slotsOnInterface)
             {
-                PlayfabManager.instance.ConsumeItem(PlayfabManager.instance.inventoryid[iteminput.text], GetChangedItemInfo);
+                data.Key.GetComponent<ItemUIDisplay>().Init(data.Value);
+                data.Value.display = data.Key.GetComponent<ItemUIDisplay>();
+                data.Value.parent = inventory;
+                data.Value.UpdateSlot();
             }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                PlayfabManager.instance.inventoryid[iteminput.text].equip = !PlayfabManager.instance.inventoryid[iteminput.text].equip;
-                PlayfabManager.instance.SetInventoryCustomData(PlayfabManager.instance.inventoryid[iteminput.text], GetChangedItemInfo);
-            }
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                PlayfabManager.instance.UnlockItem(PlayfabManager.instance.inventoryid[iteminput.text], GetItemCallback);
-            }
+
         }
 
-        void InitItemCallback(Dictionary<string,ItemSaveData> result)
+        #region DB로드
+        private void OnDataRecieved(PlayFab.ClientModels.GetUserDataResult result,ItemSlot itemdata)
         {
-            foreach (var item in result)
+            Debug.Log($"Recieved user data!!{result.Data.Count}");
+            if(result.Data.ContainsKey(itemdata.item.idx.ToString()))
             {
-                Debug.Log($"<color=red>초기로드</color> 아템아디:{item.Value.id}//레벨:{item.Value.level}//착용상태:{item.Value.equip}//갯수:{item.Value.amount}");
-            }
-            if(result.Count<=0)
-            {
-                Debug.Log("<color=red>아템 없음</color>");
-            }
-        }
-
-        public void GetItemCallback(List<ItemSaveData> result)
-        {
-            foreach (var item in result)
-            {
-                Debug.Log($"<color=cyan>획득</color> 아템아디:{item.id}//레벨:{item.level}//착용상태:{item.equip}//갯수:{item.amount}");
+                var _itemdata = inventory.GetSlots.Find(o => o.item.idx == itemdata.item.idx);
+                var dbItem = Newtonsoft.Json.JsonConvert.DeserializeObject<Item>(result.Data[itemdata.item.idx.ToString()].Value);
+                _itemdata.item.Level = dbItem.Level;
+                _itemdata.item.amount = dbItem.amount;
+                _itemdata.item.idx = dbItem.idx;
             }
         }
 
-        public void GetChangedItemInfo(ItemInfo info)
-        {
-            if(PlayfabManager.instance.inventoryid.ContainsKey(info.instanceId))
-            {
-                var item = PlayfabManager.instance.inventoryid[info.instanceId];
-                item.equip= info.equip;
-                item.level = info.level;
-                item.amount = info.amount;
-                Debug.Log($"<color=cyan>획득</color> 아템아디:{item.id}//레벨:{item.level}//착용상태:{item.equip}//갯수:{item.amount}");
-            }
-        }
+
+
+        #endregion
+
     }
 
 }

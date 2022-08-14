@@ -14,8 +14,8 @@ namespace Testb
         public SceneName startScene;
         public SceneName nowScene;
 
-        Dictionary<SceneName, GameObject> _scenes;
-        LinkedList<SceneName> _showList;
+        Dictionary<SceneName, GameObject> _scenes=new Dictionary<SceneName, GameObject>();
+        LinkedList<SceneName> _showList=new LinkedList<SceneName>();
 
         Transform _root;
 
@@ -25,6 +25,7 @@ namespace Testb
         public override void Init()
         {
             base.Init();
+            _root = this.transform;
 
             LoadStartScene();
         }
@@ -39,6 +40,27 @@ namespace Testb
             {
                 var fullpath = string.Format("Scenes/{0}", sceneName);
                 StartCoroutine(ResourcesLoader.Instance.Load<GameObject>(fullpath, o => OnPostLoadProcess(o)));
+            }
+        }
+
+        public void LoadScene(SceneName sceneName)
+        {
+            AllSceneLoaded = false;
+
+            UnloadAll();
+
+            nowScene = sceneName;
+            var scene = GetRoot(nowScene);
+            if (scene == null)
+            {
+                var fullPath = string.Format("Scenes/{0}", sceneName);
+                StartCoroutine(ResourcesLoader.Instance.Load<GameObject>(fullPath, o => OnPostLoadProcess(o)));
+            }
+            else
+            {
+#if UNITY_EDITOR
+                Debug.LogError(string.Format("{0} is arleady exist", sceneName));
+#endif
             }
         }
 
@@ -69,6 +91,31 @@ namespace Testb
                 {
                     AllSceneLoaded = true;
                 });
+        }
+
+        public void UnloadAll(bool ExitGame = false)
+        {
+            LinkedListNode<SceneName> node;
+
+            while (true)
+            {
+                node = _showList.First;
+                if (node == null)
+                    break;
+                Unload(node.Value, ExitGame);
+            }
+        }
+
+        public void Unload(SceneName sceneName, bool ExitGame)
+        {
+            var scene = GetRoot(sceneName);
+            if (scene != null)
+            {
+                scene.GetComponent<IScene>().Unload(ExitGame);
+
+                _scenes.Remove(sceneName);
+                _showList.Remove(sceneName);
+            }
         }
     }
 
