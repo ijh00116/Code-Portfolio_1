@@ -40,7 +40,7 @@
 
 ```mermaid
 graph LR
-A(A클래스:AddMessage)-->B(Message.cs)
+A(A클래스:AddMessage)-->B((Message.cs))
 C(B클래스:AddMessage)-->B
 D(C클래스:SendMessage)-.->B
 B-.->C
