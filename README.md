@@ -38,6 +38,7 @@
 - 특정 클래스 등의 정보를 전달하기 위해 직접 간섭이 아니라 정보를 전달함으로써 클래스 간의 심한 간섭을 없앤다.
 - 전달받기위해 등록된 함수들을 관리한다.
 
+
 ```mermaid
 Alice->Bob: Hello Bob, how are you?
 Note right of Bob: Bob thinks
