@@ -333,28 +333,78 @@ public class CharacterAbility : MonoBehaviour,IStateCallback
     <div markdown="1">
 
 
-- [CharacterAbility.cs](https://github.com/ijh00116/BT_Project/blob/main/Assets/InGame/Scripts/FSM/CharacterAbility.cs)
+- [InventoryObject.cs](https://github.com/ijh00116/BT_Project/blob/main/Assets/InGame/Scripts/Inventory/InventoryObject.cs)
 
 ```ca
-public class CharacterAbility : MonoBehaviour,IStateCallback
+public class InventoryObject
 {
-    [SerializeField] protected eActorState Mystate;
-    protected Character _character = null;
-    protected StateMachine<eActorState> _State;
-    public Action OnEnter => onEnter;
-    public Action OnExit => onExit;
-    public Action OnUpdate => onUpdate;
-    // Start is called before the first frame update
-    protected virtual void Start()
-    {
-        _character = GetComponent<Character>();
-        _State = _character._state;
+    [SerializeField]
+    private Inventory Container = new Inventory();
+    public List<ItemSlot> GetSlots => Container.Slots;
 
-        _State.AddState(Mystate, this);
+    ///인벤토리 테이블에서 초기설정하여 로드    
+    public void Init()
+    {
+        for (int i = 0; i < InGameDataTableManager.Instance.characterinfo.CharactersDefaultData.Count; i++)
+        {
+            ItemSlot slot = new ItemSlot();
+            slot.item = new Item(InGameDataTableManager.Instance.characterinfo.CharactersDefaultData[i].idx);
+            slot.item.characterItemInfo = InGameDataTableManager.Instance.characterinfo.CharactersDefaultData[i];
+           
+            GetSlots.Add(slot);
+        }
     }
-...
+  ...
 }
 ```
+<figure>
+<img src="https://github.com/ijh00116/BT_Project/blob/main/MdResources/inventory_0.PNG" title="인벤토리초기설정" width="500"><br>
+<figcaption>인벤토리초기설정</figcaption><br>
+</figure>
+
+- [PlayfabManager.cs](https://github.com/ijh00116/BT_Project/blob/main/Assets/InGame/Scripts/PlayfabManager.cs)
+
+```ca
+ public class PlayfabManager : Monosingleton<PlayfabManager>
+{
+        ...
+        
+        public void SavePlayerData(Dictionary<string,string > playerdata,Action<UpdateUserDataResult> onComplete)
+        {
+            var request = new UpdateUserDataRequest
+            {
+                Data = playerdata
+            };
+            PlayFabClientAPI.UpdateUserData(request, onComplete, OnError);
+        }
+        public void SavePlayerData<T>(int keyidx, T e, Action<UpdateUserDataResult> onComplete) where T : class
+        {
+            Dictionary<string, string> characterdatadic = new Dictionary<string, string>();
+
+            var _json = Newtonsoft.Json.JsonConvert.SerializeObject(e);
+            characterdatadic.Add(keyidx.ToString(), _json);
+
+            var request = new UpdateUserDataRequest
+            {
+                Data = characterdatadic
+            };
+            PlayFabClientAPI.UpdateUserData(request, onComplete, OnError);
+        }
+        
+        ...
+}
+
+```
+
+<figure>
+<img src="https://github.com/ijh00116/BT_Project/blob/main/MdResources/inventory_1.PNG" title="인벤토리 아이템 업데이트" width="500"><br>
+<figcaption>인벤토리 아이템 업데이트</figcaption><br>
+</figure>
+        
+<figure>
+<img src="https://github.com/ijh00116/BT_Project/blob/main/MdResources/inventory_2.PNG" title="인벤토리 업데이트 플레이팹 화면" width="500"><br>
+<figcaption>인벤토리 업데이트 플레이팹 화면</figcaption><br>
+</figure>
 
 
 </div>
