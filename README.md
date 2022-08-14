@@ -39,7 +39,6 @@
 - 전달받기위해 등록된 함수들을 관리한다.
 
 ```mermaid
-graph LR
 Alice->Bob: Hello Bob, how are you?
 Note right of Bob: Bob thinks
 Bob-->Alice: I am good thanks!
