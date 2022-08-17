@@ -1,18 +1,55 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
 
-public class TableKit : MonoBehaviour
+public abstract class TableKit<TDataItem>: IEnumerable<TDataItem>,IDisposable
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Add(TDataItem item)
     {
-        
+        OnAdd(item);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Remove(TDataItem item)
     {
-        
+        OnRemove(item);
+    }
+
+    public void Clear()
+    {
+        OnClear();
+    }
+
+    // ËÇ£¬ë¦éÍ TDataItem ÷×ßÈãÀìÚéÄ?úþ£¬á¶ì¤òÁïÈËÇ??Ê¦£¬å¥êóÊ¦ÒöãÀ??úþ ì¤ý¨î¢?
+    public void Update()
+    {
+    }
+
+    protected abstract void OnAdd(TDataItem item);
+    protected abstract void OnRemove(TDataItem item);
+
+    protected abstract void OnClear();
+
+
+    public abstract IEnumerator<TDataItem> GetEnumerator();
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+
+    public void Dispose()
+    {
+        OnDispose();
+    }
+
+    protected abstract void OnDispose();
+}
+
+public class TableIndex<TKeyType, TDataItem> : IDisposable
+{
+    public void Dispose()
+    {
+        throw new NotImplementedException();
     }
 }
