@@ -86,7 +86,7 @@ private static Dictionary<string, List<Delegate>> handlers = new Dictionary<stri
             return;
         messagelst.Remove(ms);
     }
-
+//등록된 이벤트 센드
     private static void SendMessage<T>(string messageName,T e) where T:Message
     {
         if (!handlers.ContainsKey(messageName))
