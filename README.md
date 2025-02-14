@@ -1,4 +1,4 @@
-# Project Framework and Portpolio
+# Project Framework and Code
 - 해당 프로젝트는 UnityProject(2021.3.4f1)입니다.
 - 프로젝트를 열어 각 프레임워크에 해당하는 씬을 열어 실행해볼 수 있습니다.
 ## Index
